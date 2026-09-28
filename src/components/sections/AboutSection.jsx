@@ -36,13 +36,15 @@ function StatCard({ label, value }) {
 }
 
 function RevealWord({ word, progress, range }) {
-  const color = useTransform(progress, range, ["#2a2a35", "#f3f4f6"]);
-  const opacity = useTransform(progress, range, [0.4, 1]);
+  // Wide range enables soft overlapping wave across words
+  const color = useTransform(progress, range, ["#3f3f46", "#ffffff"]);
+  const opacity = useTransform(progress, range, [0.35, 1]);
+  const y = useTransform(progress, range, [3, 0]);
 
   return (
     <motion.span
-      style={{ color, opacity }}
-      className="inline-block mr-[0.3em] font-sans"
+      style={{ color, opacity, y }}
+      className="inline-block mr-[0.3em] font-sans transition-shadow"
     >
       {word}
     </motion.span>
@@ -56,8 +58,12 @@ function RevealParagraph({ text, paragraphStartIndex, totalWords, progress }) {
     <p className="text-sm sm:text-base leading-relaxed text-left sm:text-justify font-sans">
       {words.map((word, i) => {
         const globalWordIndex = paragraphStartIndex + i;
-        const start = globalWordIndex / totalWords;
-        const end = Math.min(1, (globalWordIndex + 1) / totalWords);
+        // Step size for starting threshold
+        const step = 0.8 / totalWords;
+        const start = globalWordIndex * step;
+        // Wide 0.20 window ensures 8-10 words are smoothly blending at any scroll position
+        const end = Math.min(1, start + 0.2);
+
         return (
           <RevealWord
             key={i}
@@ -89,10 +95,10 @@ export default function AboutSection() {
   });
 
   // Track scroll progress directly on the bio container
-  // Start when top of bio enters 85% of screen, finish when top of bio reaches 25% of screen
+  // Start when top of bio enters 85% of screen, finish when top of bio reaches 20% of screen
   const { scrollYProgress } = useScroll({
     target: bioRef,
-    offset: ["start 85%", "start 25%"],
+    offset: ["start 85%", "start 20%"],
   });
 
   const containerVariants = {
@@ -107,7 +113,7 @@ export default function AboutSection() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
@@ -145,7 +151,7 @@ export default function AboutSection() {
           variants={containerVariants}
           className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-start"
         >
-          {/* Left: Bio paragraphs with fast hardware-accelerated scroll reveal */}
+          {/* Left: Bio paragraphs with soft liquid wave scroll reveal */}
           <div className="space-y-6" ref={bioRef}>
             {paragraphs.map((para, i) => (
               <motion.div
