@@ -54,7 +54,7 @@ export default function FooterSection() {
   };
 
   return (
-    <footer id="contact" className="relative pt-40 pb-12 px-6 overflow-hidden mt-20">
+    <footer id="contact" className="relative pt-20 sm:pt-28 md:pt-40 pb-8 sm:pb-12 px-4 sm:px-6 overflow-hidden mt-10 sm:mt-20">
       {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -62,14 +62,14 @@ export default function FooterSection() {
       <ScrollingText text="LET'S CONNECT • LET'S COLLABORATE • HIRE ME • GET IN TOUCH • LET'S BUILD • " />
 
       {/* Top separator */}
-      <div className="gradient-line mb-24 absolute top-0 left-0 w-full" />
+      <div className="gradient-line mb-12 sm:mb-16 md:mb-24 absolute top-0 left-0 w-full" />
 
       <div className="max-w-5xl mx-auto relative z-10 pointer-events-none">
         
         {/* Everything inside max-w-5xl needs pointer-events-auto so buttons work over the scrolling text */}
         <div className="pointer-events-auto">
           {/* Big CTA heading */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
             <BeamText
               as="h2"
               className="text-4xl sm:text-5xl md:text-7xl font-bold"
@@ -94,7 +94,7 @@ export default function FooterSection() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={lineVariants}
-            className="text-center mb-20 flex justify-center relative"
+            className="text-center mb-12 sm:mb-16 md:mb-20 flex justify-center relative"
           >
             <div className="relative inline-block">
               {/* Floating Animated Copied Toast / Tooltip */}
@@ -120,7 +120,7 @@ export default function FooterSection() {
                 initial="initial"
                 whileHover="hover"
                 whileTap={{ scale: 0.98 }}
-                className={`group relative inline-flex items-center gap-3.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full border transition-all duration-300 cursor-pointer overflow-hidden ${
+                className={`group relative inline-flex items-center gap-2 sm:gap-3.5 px-4 sm:px-6 md:px-8 py-3 sm:py-3.5 md:py-4 rounded-full border transition-all duration-300 cursor-pointer overflow-hidden ${
                   copied
                     ? "bg-emerald-950/30 border-emerald-500/50 text-white shadow-[0_0_30px_rgba(16,185,129,0.2)]"
                     : "bg-[#111111]/80 border-[#ffffff0a] text-[#a0a0a0] hover:text-white hover:border-accent/40 hover:bg-[#1a1a24]/80 hover:shadow-[0_0_30px_rgba(120,119,198,0.15)]"
@@ -138,8 +138,8 @@ export default function FooterSection() {
                   }}
                 />
 
-                <div className="relative z-10 flex items-center gap-3 sm:gap-4 text-lg sm:text-2xl font-medium">
-                  <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 border border-white/10 group-hover:border-accent/30 transition-colors">
+                <div className="relative z-10 flex items-center gap-2 sm:gap-3 md:gap-4 text-sm sm:text-lg md:text-2xl font-medium">
+                  <div className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full bg-white/5 border border-white/10 group-hover:border-accent/30 transition-colors">
                     {copied ? (
                       <FiCheck className="w-4 h-4 text-emerald-400 stroke-[2.5]" />
                     ) : (
@@ -147,7 +147,7 @@ export default function FooterSection() {
                     )}
                   </div>
 
-                  <span className="tracking-tight sm:tracking-normal">{footerData.email}</span>
+                  <span className="tracking-tight sm:tracking-normal text-xs sm:text-base md:text-2xl">{footerData.email}</span>
 
                   <div className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full transition-all duration-300 ${
                     copied
@@ -178,7 +178,7 @@ export default function FooterSection() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={lineVariants}
-            className="flex justify-center gap-6 mb-24"
+            className="flex justify-center gap-4 sm:gap-6 mb-16 sm:mb-20 md:mb-24"
           >
             {footerData.socials.map((social, i) => (
               <MagneticWrapper key={social.name} strength={0.4}>
@@ -188,7 +188,7 @@ export default function FooterSection() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -5 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative flex items-center justify-center w-14 h-14 rounded-full border border-white/10 text-text-secondary transition-all duration-300 hover:text-white hover:border-white/30 bg-white/5 backdrop-blur-xl"
+                  className="relative flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-white/10 text-text-secondary transition-all duration-300 hover:text-white hover:border-white/30 bg-white/5 backdrop-blur-xl"
                   aria-label={social.name}
                 >
                   <div className="relative z-10 transition-colors duration-300">
@@ -206,7 +206,7 @@ export default function FooterSection() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={lineVariants}
-            className="flex flex-wrap justify-center gap-8 mb-12"
+            className="flex flex-wrap justify-center gap-x-6 gap-y-3 sm:gap-8 mb-8 sm:mb-12"
           >
             {footerData.navLinks.map((link) => (
               <a

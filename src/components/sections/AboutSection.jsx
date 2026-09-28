@@ -63,10 +63,10 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="relative py-32 px-6">
+    <section id="about" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden max-w-full w-full">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <BeamText
             as="h2"
             className="text-4xl sm:text-5xl md:text-6xl font-bold"
@@ -91,7 +91,7 @@ export default function AboutSection() {
           initial="hidden"
           animate={controls}
           variants={containerVariants}
-          className="grid md:grid-cols-2 gap-16 items-start"
+          className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-start"
         >
           {/* Left: Bio paragraphs */}
           <div className="space-y-6" style={{ perspective: "1000px" }}>
@@ -102,7 +102,7 @@ export default function AboutSection() {
                 className="p-6 rounded-xl border border-border/30 transition-all duration-500 box-glow"
                 style={{ background: "rgba(17,17,17,0.3)" }}
               >
-                <p className="text-text-primary leading-relaxed text-justify">{para}</p>
+                <p className="text-text-primary leading-relaxed text-left sm:text-justify">{para}</p>
               </motion.div>
             ))}
           </div>

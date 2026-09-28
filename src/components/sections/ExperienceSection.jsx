@@ -33,7 +33,7 @@ function TimelineCard({ item, index, isLeft }) {
           },
         },
       }}
-      className={`relative flex items-center w-full mb-12 ${
+      className={`relative flex items-center w-full mb-6 sm:mb-8 md:mb-12 ${
         isLeft ? "md:flex-row" : "md:flex-row-reverse"
       }`}
       style={{ perspective: "1000px" }}
@@ -48,18 +48,18 @@ function TimelineCard({ item, index, isLeft }) {
           className="p-6 rounded-2xl border border-border/50 transition-all duration-500 box-glow group"
           style={{ background: "rgba(17,17,17,0.5)" }}
         >
-          <div className="flex items-start justify-between mb-3">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 gap-2">
             <div>
-              <h3 className="text-lg font-bold text-text-hover group-hover:text-glow-always transition-all duration-300">
+              <h3 className="text-base sm:text-lg font-bold text-text-hover group-hover:text-glow-always transition-all duration-300">
                 {item.role}
               </h3>
-              <p className="text-accent text-sm font-medium">{item.company}</p>
+              <p className="text-accent text-xs sm:text-sm font-medium">{item.company}</p>
             </div>
-            <span className="text-text-secondary text-xs bg-surface px-3 py-1 rounded-full border border-border/50 whitespace-nowrap ml-3">
+            <span className="text-text-secondary text-[10px] sm:text-xs bg-surface px-2.5 sm:px-3 py-1 rounded-full border border-border/50 whitespace-nowrap self-start">
               {item.period}
             </span>
           </div>
-          <p className="text-text-primary text-sm leading-relaxed mb-4 text-justify">
+          <p className="text-text-primary text-xs sm:text-sm leading-relaxed mb-4 text-left sm:text-justify">
             {item.description}
           </p>
           <div className="flex flex-wrap gap-2">
@@ -109,10 +109,10 @@ export default function ExperienceSection() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="experience" className="relative py-32 px-6" ref={containerRef}>
+    <section id="experience" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden max-w-full w-full" ref={containerRef}>
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <BeamText
             as="h2"
             className="text-4xl sm:text-5xl md:text-6xl font-bold"

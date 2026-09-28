@@ -54,7 +54,7 @@ export default function ScrollingText({
   });
 
   const textStyle = {
-    fontSize: "clamp(4rem, 10vw, 9rem)",
+    fontSize: "clamp(2.5rem, 8vw, 9rem)",
     fontWeight: 900,
     letterSpacing: "0.05em",
     lineHeight: 1.1,
@@ -64,8 +64,8 @@ export default function ScrollingText({
 
   return (
     <motion.div
-      className="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none select-none"
-      style={{ zIndex: 2 }}
+      className="absolute bottom-0 left-0 w-full max-w-full overflow-hidden pointer-events-none select-none"
+      style={{ zIndex: 2, contain: "paint" }}
       initial={{ y: "100%", opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 2.5, duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}

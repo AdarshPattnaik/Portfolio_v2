@@ -11,6 +11,11 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata = {
   title: "Adarsh Pattnaik — Full Stack Developer",
   description:

@@ -18,7 +18,7 @@ export default function Home() {
       <Navbar />
       <MorphingBlobs />
 
-      <main className="relative z-10">
+      <main className="relative z-10 overflow-x-hidden max-w-full w-full">
         <HeroSection />
         <AboutSection />
         <ExperienceSection />

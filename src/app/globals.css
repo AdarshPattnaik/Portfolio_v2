@@ -135,7 +135,12 @@ html {
 }
 
 html {
+  scrollbar-width: thin;
+  scrollbar-color: #252530 #121218;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body {
@@ -143,6 +148,9 @@ body {
   color: #a0a0a0;
   font-family: var(--font-sans), system-ui, sans-serif;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  position: relative;
 }
 
 ::selection {

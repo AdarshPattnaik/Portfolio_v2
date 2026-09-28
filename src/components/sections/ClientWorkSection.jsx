@@ -43,7 +43,7 @@ function WorkCard({ item, index }) {
         className="flex flex-col h-full"
       >
         {/* Top Image Preview */}
-        <div className="relative w-full h-56 sm:h-64 rounded-xl overflow-hidden mb-4 bg-[#0a0a0d] border border-white/5">
+        <div className="relative w-full h-44 sm:h-56 md:h-64 rounded-xl overflow-hidden mb-3 sm:mb-4 bg-[#0a0a0d] border border-white/5">
           <img
             src={item.image}
             alt={item.title}
@@ -88,13 +88,13 @@ function WorkCard({ item, index }) {
 
 export default function ClientWorkSection() {
   return (
-    <section id="client-work" className="relative py-32 px-6 overflow-hidden">
+    <section id="client-work" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden">
       {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16">
           {/* Top Tagline */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}

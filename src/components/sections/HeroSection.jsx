@@ -139,7 +139,7 @@ function PremiumRevealText({ text, delay = 0 }) {
   let globalIndex = 0;
 
   return (
-    <span className="inline-flex flex-nowrap justify-center gap-x-[0.3em] whitespace-nowrap">
+    <span className="inline-flex flex-wrap justify-center gap-x-[0.35em] max-w-full">
       {words.map((word, wIdx) => (
         <span key={wIdx} className="inline-flex overflow-hidden">
           {word.split("").map((char, i) => {
@@ -504,7 +504,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden max-w-full w-full px-4 sm:px-6"
     >
       <ParticleField />
 
@@ -513,7 +513,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1, duration: 0.8 }}
-        className="absolute top-8 left-6 md:top-10 md:left-10 z-20 pointer-events-none flex flex-col gap-4 items-start"
+        className="absolute top-6 left-4 sm:top-8 sm:left-6 md:top-10 md:left-10 z-20 pointer-events-none flex flex-col gap-3 sm:gap-4 items-start"
       >
         <div className="flex items-center gap-3">
           <motion.div
@@ -547,7 +547,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1, duration: 0.8 }}
-        className="hidden md:block absolute top-8 right-6 md:top-10 md:right-10 z-20 pointer-events-none"
+        className="hidden md:block absolute top-6 right-4 sm:top-8 sm:right-6 md:top-10 md:right-10 z-20 pointer-events-none"
       >
         <LiveClock align="right" />
       </motion.div>
@@ -555,44 +555,46 @@ export default function HeroSection() {
       {/* Circuit Board Pattern with Glowing Beams */}
       <CircuitLines />
 
-      {/* Aurora Ambient Glows */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.5, 0.8, 0.5],
-          x: [0, 50, 0],
-          y: [0, 30, 0]
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[10%] left-[20%] w-[500px] h-[500px] rounded-full mix-blend-screen pointer-events-none blur-[120px] z-0"
-        style={{ background: "radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)", willChange: "transform, opacity" }}
-      />
-      
-      <motion.div
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.4, 0.7, 0.4],
-          x: [0, -60, 0],
-          y: [0, 40, 0]
-        }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-[10%] right-[10%] w-[600px] h-[600px] rounded-full mix-blend-screen pointer-events-none blur-[150px] z-0"
-        style={{ background: "radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%)", willChange: "transform, opacity" }}
-      />
+      {/* Aurora Ambient Glows (Clipped) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.5, 0.8, 0.5],
+            x: [0, 50, 0],
+            y: [0, 30, 0]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[10%] left-[20%] w-[250px] h-[250px] sm:w-[500px] sm:h-[500px] rounded-full mix-blend-screen pointer-events-none blur-[80px] sm:blur-[120px]"
+          style={{ background: "radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)", willChange: "transform, opacity" }}
+        />
+        
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.4, 0.7, 0.4],
+            x: [0, -60, 0],
+            y: [0, 40, 0]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[10%] right-[10%] w-[250px] h-[250px] sm:w-[600px] sm:h-[600px] rounded-full mix-blend-screen pointer-events-none blur-[100px] sm:blur-[150px]"
+          style={{ background: "radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%)", willChange: "transform, opacity" }}
+        />
+      </div>
 
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-2 sm:px-6 max-w-4xl mx-auto">
         {/* Greeting */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-text-secondary text-lg mb-4 tracking-[0.2em] uppercase"
+          className="text-text-secondary text-sm sm:text-lg mb-3 sm:mb-4 tracking-[0.15em] sm:tracking-[0.2em] uppercase"
         >
           {homeData.greeting}
         </motion.p>
 
         {/* Name with premium reveal animation */}
-        <h1 className="text-[clamp(2rem,5vw,6rem)] font-bold mb-6 text-text-primary uppercase tracking-wide flex justify-center whitespace-nowrap overflow-visible leading-tight">
+        <h1 className="text-[clamp(1.8rem,5vw,6rem)] font-bold mb-4 sm:mb-6 text-text-primary uppercase tracking-wide flex justify-center flex-wrap overflow-visible leading-tight">
           <PremiumRevealText text={homeData.name} delay={0.5} />
         </h1>
 
@@ -601,7 +603,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.5 }}
-          className="text-xl sm:text-2xl md:text-3xl mb-8 h-10"
+          className="text-lg sm:text-2xl md:text-3xl mb-6 sm:mb-8 h-8 sm:h-10"
         >
           <TypewriterRoles roles={homeData.roles} />
         </motion.div>
@@ -611,7 +613,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2, duration: 0.6 }}
-          className="text-text-secondary text-base sm:text-lg max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed"
         >
           {homeData.tagline}
         </motion.p>
@@ -667,7 +669,7 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 3, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2"
       >
         <span className="text-text-secondary text-xs tracking-[0.3em] uppercase">
           Scroll

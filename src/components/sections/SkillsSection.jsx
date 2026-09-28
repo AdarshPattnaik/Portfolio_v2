@@ -93,10 +93,10 @@ export default function SkillsSection() {
   const { ref, controls } = useScrollReveal(0.1);
 
   return (
-    <section id="skills" className="relative py-32 px-6">
+    <section id="skills" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden max-w-full w-full">
       <div className="max-w-6xl mx-auto">
         
-        <div className="mb-16">
+        <div className="mb-10 sm:mb-12 md:mb-16">
           <BeamText
             as="h2"
             className="text-3xl sm:text-4xl md:text-5xl font-bold"

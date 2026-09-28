@@ -83,7 +83,7 @@ function ProjectCard({ project, index }) {
           {project.title}
         </h3>
 
-        <p className="text-text-primary text-sm sm:text-base leading-relaxed mb-6 relative z-10 text-justify">
+        <p className="text-text-primary text-sm sm:text-base leading-relaxed mb-6 relative z-10 text-left sm:text-justify">
           {project.description}
         </p>
 
@@ -146,10 +146,10 @@ function ProjectCard({ project, index }) {
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="relative py-32 px-6">
+    <section id="projects" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden max-w-full w-full">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <BeamText
             as="h2"
             className="text-4xl sm:text-5xl md:text-6xl font-bold"
