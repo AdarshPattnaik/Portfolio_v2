@@ -122,7 +122,7 @@ export default function FooterSection() {
                 whileTap={{ scale: 0.98 }}
                 className={`group relative inline-flex items-center gap-2 sm:gap-3.5 px-4 sm:px-6 md:px-8 py-3 sm:py-3.5 md:py-4 rounded-full border transition-all duration-300 cursor-pointer overflow-hidden ${
                   copied
-                    ? "bg-emerald-950/30 border-emerald-500/50 text-white shadow-[0_0_30px_rgba(16,185,129,0.2)]"
+                    ? "bg-emerald-950/20 border-emerald-500/40 text-white shadow-[0_0_25px_rgba(16,185,129,0.15)]"
                     : "bg-[#111111]/80 border-[#ffffff0a] text-[#a0a0a0] hover:text-white hover:border-accent/40 hover:bg-[#1a1a24]/80 hover:shadow-[0_0_30px_rgba(120,119,198,0.15)]"
                 }`}
               >
@@ -138,33 +138,41 @@ export default function FooterSection() {
                   }}
                 />
 
-                <div className="relative z-10 flex items-center gap-2 sm:gap-3 md:gap-4 text-sm sm:text-lg md:text-2xl font-medium">
-                  <div className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full bg-white/5 border border-white/10 group-hover:border-accent/30 transition-colors">
-                    {copied ? (
-                      <FiCheck className="w-4 h-4 text-emerald-400 stroke-[2.5]" />
-                    ) : (
-                      <FiMail className="w-4 h-4 text-accent group-hover:scale-110 transition-transform duration-300" />
-                    )}
+                <div className="relative z-10 flex items-center gap-2.5 sm:gap-3.5 md:gap-4 text-sm sm:text-lg md:text-2xl font-medium">
+                  <div className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full bg-white/5 border border-white/10 group-hover:border-accent/30 transition-colors shrink-0">
+                    <FiMail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent group-hover:scale-110 transition-transform duration-300" />
                   </div>
 
-                  <span className="tracking-tight sm:tracking-normal text-xs sm:text-base md:text-2xl">{footerData.email}</span>
+                  <span className="tracking-tight sm:tracking-normal text-xs sm:text-base md:text-2xl shrink-0">{footerData.email}</span>
 
-                  <div className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full transition-all duration-300 ${
+                  <div className={`flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full transition-all duration-300 shrink-0 ${
                     copied
                       ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40"
                       : "bg-white/5 text-text-secondary border border-white/10 group-hover:text-white group-hover:border-white/20 group-hover:bg-white/10"
                   }`}>
-                    {copied ? (
-                      <>
-                        <FiCheck className="w-3.5 h-3.5 text-emerald-400" />
-                        <span>Copied</span>
-                      </>
-                    ) : (
-                      <>
-                        <FiCopy className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
-                        <span className="hidden sm:inline">Copy</span>
-                      </>
-                    )}
+                    <AnimatePresence mode="wait">
+                      {copied ? (
+                        <motion.div
+                          key="check"
+                          initial={{ scale: 0, rotate: -45 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          exit={{ scale: 0, rotate: 45 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <FiCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400 stroke-[2.5]" />
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key="copy"
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          exit={{ scale: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <FiCopy className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
               </motion.button>
