@@ -19,19 +19,27 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    let ticking = false;
 
-      const sections = navLinks.map((link) => link.href.slice(1));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 150) {
-            setActiveSection(sections[i]);
-            break;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50);
+
+          const sections = navLinks.map((link) => link.href.slice(1));
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const el = document.getElementById(sections[i]);
+            if (el) {
+              const rect = el.getBoundingClientRect();
+              if (rect.top <= 150) {
+                setActiveSection(sections[i]);
+                break;
+              }
+            }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

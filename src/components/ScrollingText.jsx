@@ -15,7 +15,7 @@ export default function ScrollingText({
   text = "WELCOME TO MY WORLD OF CODE & CREATIVITY • BUILDING THE FUTURE ONE PROJECT AT A TIME • ",
 }) {
   const baseText = text.endsWith(" ") ? text : text + " ";
-  const repeatedText = baseText.repeat(8);
+  const repeatedText = baseText.repeat(4);
 
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();

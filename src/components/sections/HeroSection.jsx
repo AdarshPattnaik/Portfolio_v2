@@ -16,6 +16,7 @@ function ParticleField() {
     let animId;
     let particles = [];
     let mouse = { x: -1000, y: -1000 };
+    let isVisible = true;
 
     function resize() {
       canvas.width = window.innerWidth;
@@ -39,6 +40,7 @@ function ParticleField() {
     }
 
     function draw() {
+      if (!isVisible) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((p) => {
@@ -93,6 +95,18 @@ function ParticleField() {
       mouse.y = e.clientY;
     }
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (!wasVisible && isVisible) {
+          draw();
+        }
+      },
+      { threshold: 0.01 }
+    );
+    observer.observe(canvas);
+
     resize();
     createParticles();
     draw();
@@ -100,10 +114,11 @@ function ParticleField() {
     window.addEventListener("resize", () => {
       resize();
       createParticles();
-    });
-    window.addEventListener("mousemove", handleMouse);
+    }, { passive: true });
+    window.addEventListener("mousemove", handleMouse, { passive: true });
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouse);
@@ -213,6 +228,7 @@ function CircuitLines() {
     let animId;
     let paths = [];
     let beams = [];
+    let isVisible = true;
 
     const colors = [
       { r: 240, g: 240, b: 240 },   // near white
@@ -336,6 +352,7 @@ function CircuitLines() {
     }
 
     function draw() {
+      if (!isVisible) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Draw static circuit paths
@@ -411,6 +428,18 @@ function CircuitLines() {
       animId = requestAnimationFrame(draw);
     }
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (!wasVisible && isVisible) {
+          draw();
+        }
+      },
+      { threshold: 0.01 }
+    );
+    observer.observe(canvas);
+
     resize();
     draw();
 
@@ -418,9 +447,10 @@ function CircuitLines() {
       resize();
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", handleResize);
     };

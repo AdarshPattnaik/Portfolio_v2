@@ -16,22 +16,16 @@ function ProjectCard({ project, index }) {
       variants={{
         hidden: {
           opacity: 0,
-          y: 60,
-          rotateX: 15,
-          rotateY: index % 2 === 0 ? -5 : 5,
-          scale: 0.9,
-          filter: "blur(10px)",
+          y: 40,
+          scale: 0.96,
         },
         visible: {
           opacity: 1,
           y: 0,
-          rotateX: 0,
-          rotateY: 0,
           scale: 1,
-          filter: "blur(0px)",
           transition: {
-            duration: 0.8,
-            delay: index * 0.1,
+            duration: 0.6,
+            delay: index * 0.08,
             ease: [0.25, 0.46, 0.45, 0.94],
           },
         },
